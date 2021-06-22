@@ -1,3 +1,4 @@
+/* This file has been modified by Sam Trenholme */
 /*
  * This file has been modified for the cdrkit suite.
  *
@@ -707,7 +708,9 @@ tvd_write(FILE *outfile)
 	}
 	/* Next we write out the boot volume descriptor for the disc */
 	get_torito_desc(&gboot_desc);
+#ifdef JIGDO
 	jtwrite(&gboot_desc, SECTOR_SIZE, 1, 0, FALSE);
+#endif
 	xfwrite(&gboot_desc, SECTOR_SIZE, 1, outfile, 0, FALSE);
 	last_extent_written++;
 	return (0);
