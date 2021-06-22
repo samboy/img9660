@@ -1,9 +1,9 @@
 # Note: This file was created by Sam Trenholme
 
-all: apple.o apple_driver.o boot-alpha.o boot-hppa.o boot-mips.o \
+all: genisoimage apple.o apple_driver.o boot-alpha.o boot-hppa.o boot-mips.o \
   boot-mipsel.o boot.o checksum.o desktop.o dvd_file.o \
   dvd_reader.o eltorito.o endian.o exclude.o files.o fnmatch.o \
-  genisoimage.o getopt.o getopt1.o hash.o ifo_read.o joliet.o \
+  getopt.o getopt1.o hash.o ifo_read.o joliet.o jte.o \
   match.o md5.o multi.o name.o rock.o rsync.o \
   scsi.o sha1.o sha256.o sha512.o stream.o tree.o udf.o vms.o \
   volume.o write.o
@@ -131,3 +131,5 @@ volume.o: volume.c
 write.o: write.c
 	cc -c -I include/ -o write.o write.c
 
+genisoimage: genisoimage.c *.o
+	cc -I include/ -o 9660img genisoimage.c *.o

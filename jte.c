@@ -1,3 +1,4 @@
+/* This file has been modified by Sam Trenholme */
 /*
  * jte.c
  *
@@ -9,6 +10,7 @@
  * GNU GPL v2
  */
 
+#ifdef JINGO
 #include <mconfig.h>
 #include "genisoimage.h"
 #include <timedefs.h>
@@ -1040,3 +1042,8 @@ void write_jt_match_record(char *filename, char *mirror_name, int sector_size, o
         add_unmatched_entry(pad_size);
     }        
 }
+#else // JINGO
+void jtwrite(void *buffer, int size, int count, int submode, BOOL islast) {
+	return;
+}
+#endif // JINGO
