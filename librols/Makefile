@@ -6,6 +6,9 @@ all: astoi.o astoll.o astoull.o breakline.o cmpbytes.o comerr.o \
   handlecond.o movebytes.o raisecond.o rename.o saveargs.o seterrno.o \
   snprintf.o spawn.o strcatl.o strdup.o streql.o swabbytes.o usleep.o \
 
+clean:
+	rm -f *.o
+
 astoi.o: astoi.c
 	cc -c -I ../include/ -o astoi.o astoi.c
 
