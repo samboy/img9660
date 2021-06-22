@@ -8,8 +8,11 @@ all: genisoimage apple.o apple_driver.o boot-alpha.o boot-hppa.o boot-mips.o \
   scsi.o sha1.o sha256.o sha512.o stream.o tree.o udf.o vms.o \
   volume.o write.o
 
+librols/movebytes.o:
+	cd librols/ ; make ; cd ..
+
 clean:
-	rm -f *.o
+	rm -f *.o librols/*.o
 
 apple.o: apple.c
 	cc -c -I include/ -o apple.o apple.c
@@ -131,5 +134,5 @@ volume.o: volume.c
 write.o: write.c
 	cc -c -I include/ -o write.o write.c
 
-genisoimage: genisoimage.c *.o
+genisoimage: librols/movebytes.o genisoimage.c *.o
 	cc -I include/ -o 9660img genisoimage.c *.o
