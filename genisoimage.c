@@ -1,3 +1,4 @@
+/* This file has been modified by Sam Trenholme */
 /*
  * This file has been modified for the cdrkit suite.
  *
@@ -251,9 +252,7 @@ int	use_udf = 0;
 int	dvd_video = 0;
 #endif
 
-#ifdef SORTING
 int	do_sort = 0;		/* sort file data */
-#endif /* SORTING */
 
 #ifdef USE_ICONV
 int   iconv_possible;
@@ -438,7 +437,6 @@ struct ld_option {
 #define	OPTION_DVD			1501
 #endif
 
-#ifdef APPLE_HYB
 #define	OPTION_CAP			2000
 #define	OPTION_NETA			2001
 #define	OPTION_DBL			2002
@@ -495,8 +493,6 @@ struct ld_option {
 #define	OPTION_MAP_FILE			2045
 
 #define	OPTION_ALLOW_LIMITED_SIZE 2046
-
-#endif	/* APPLE_HYB */
 
 static int	save_pname = 0;
 
@@ -2301,9 +2297,11 @@ int main(int argc, char *argv[])
 			"Warning: -no-mac-files no longer used ... ignoring\n");
 #endif
 			break;
+#ifdef APPLE_HYB
 		case OPTION_BOOT_HFS_FILE:
 			hfs_boot_file = optarg;
 			/* FALLTHRU */
+#endif
 		case OPTION_GEN_PT:
 			gen_pt = 1;
 			break;
@@ -2453,7 +2451,9 @@ int main(int argc, char *argv[])
 #endif	/* APPLE_HYB */
 		case OPTION_ALLOW_LIMITED_SIZE:
 			allow_limited_size++;
+#ifdef UDF
       use_udf++;
+#endif
 			break;
 		default:
 			susage(1);
@@ -2471,12 +2471,16 @@ parse_input_files:
 	 * XXX This is a hack until we have a decent separate name handling
 	 * XXX for UDF filenames.
 	 */
+#ifdef DVD_VIDEO
 	if (dvd_video && use_Joliet) {
 		use_Joliet = 0;
 		fprintf(stderr, "Warning: Disabling Joliet support for DVD-Video.\n");
 	}
+#endif
+#ifdef UDF
 	if (use_udf && !use_Joliet)
 		jlen = 255;
+#endif
 
 	if (preparer) {
 		if (strlen(preparer) > 128) {
@@ -2900,19 +2904,32 @@ parse_input_files:
 		save_pname = 1;
 	}
 	if (stream_media_size) {
-		if (use_XA || use_RockRidge || use_udf || use_Joliet)
+		if (use_XA || use_RockRidge 
+#ifdef UDF
+		    || use_udf 
+#endif
+		    || use_Joliet)
 			comerrno(EX_BAD,
 			"Cannot use XA, Rock Ridge, UDF or Joliet with -stream-media-size\n");
 		if (merge_image)
 			comerrno(EX_BAD,
 			"Cannot use multi session with -stream-media-size\n");
 		if (use_eltorito || use_sparcboot || use_sunx86boot ||
-		    use_genboot || use_prep_boot || hfs_boot_file)
+		    use_genboot 
+#ifdef PREP_BOOT
+		    || use_prep_boot 
+#endif
+#ifdef APPLE_HYB
+		    || hfs_boot_file
+#endif
+		    )
 			comerrno(EX_BAD,
 			"Cannot use boot options with -stream-media-size\n");
+#ifdef APPLE_HYB
 		if (apple_hyb)
 			comerrno(EX_BAD,
 			"Cannot use Apple hybrid options with -stream-media-size\n");
+#endif // APPLE_HYB
 	}
 
 	if (use_RockRidge) {
@@ -3449,6 +3466,7 @@ if (check_session == 0)
 			exit(1);
 #endif
 		}
+#ifdef JIGDO_TEMPLATE
 		if (jtemplate_out || jjigdo_out) {
 			if (!jtemplate_out || !jjigdo_out || !jmd5_list) {
 #ifdef USE_LIBSCHILY
@@ -3470,8 +3488,8 @@ if (check_session == 0)
 			}
 			write_jt_header(jttemplate, jtjigdo);
 		}
-	} else if ((outfile == NULL)
-               && isatty (fileno (stdout))) {
+#endif // JIGDO_TEMPLATE
+	} else if ((outfile == NULL) && isatty (fileno (stdout))) {
 		/* FIXME: a cleaner way to override this check? */
 		fputs (("image not written to a terminal.\n"
                 "Use -o - to force the output.\n"),
@@ -3742,12 +3760,14 @@ if (check_session == 0)
 				last_extent, last_extent_written);
 	}
 
+#ifdef JIGDO_TEMPLATE
 	if (jttemplate) {
 		write_jt_footer();
 		fclose(jttemplate);
 	}
 	if (jtjigdo)
 		fclose(jtjigdo);
+#endif // JIGDO_TEMPLATE
 
 	if (verbose > 0) {
 #ifdef HAVE_SBRK

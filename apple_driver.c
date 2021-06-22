@@ -37,7 +37,7 @@
 
 #include <mconfig.h>
 #include "genisoimage.h"
-#include <mac_label.h>
+#include "mac_label.h"
 #include <schily.h>
 
 int	get_732(char *p);
