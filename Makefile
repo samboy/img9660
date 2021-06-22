@@ -4,7 +4,7 @@ all: apple.o apple_driver.o boot-alpha.o boot-hppa.o boot-mips.o \
   boot-mipsel.o boot.o checksum.o desktop.o dvd_file.o \
   dvd_reader.o eltorito.o endian.o exclude.o files.o fnmatch.o \
   genisoimage.o getopt.o getopt1.o hash.o ifo_read.o joliet.o \
-  jte.o mac_label.o match.o md5.o multi.o name.o rock.o rsync.o \
+  match.o md5.o multi.o name.o rock.o rsync.o \
   scsi.o sha1.o sha256.o sha512.o stream.o tree.o udf.o vms.o \
   volume.o write.o
 

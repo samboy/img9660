@@ -1,3 +1,4 @@
+/* This file has been modified by Sam Trenholme */
 /*
  * This file has been modified for the cdrkit suite.
  *
@@ -424,9 +425,9 @@ extern int	use_chrp_boot;
 #endif	/* PREP_BOOT */
 #endif	/* APPLE_HYB */
 
-#ifdef SORTING
+/*#ifdef SORTING*/
 extern int	do_sort;
-#endif /* SORTING */
+/*#endif*/ /* SORTING */
 
 /* tree.c */
 extern int stat_filter(char *, struct stat *);
