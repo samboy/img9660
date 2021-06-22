@@ -45,7 +45,6 @@
  *		Check file size = finder + rsrc [+ data] is needed
  */
 
-#include <stdio.h>
 #ifdef APPLE_HYB
 
 #include <mconfig.h>
