@@ -1,3 +1,4 @@
+/* This file has been modified by Sam Trenholme */
 /*
  * This file has been modified for the cdrkit suite.
  *
@@ -38,7 +39,7 @@
 #include <mconfig.h>
 #include <stdxlib.h>
 #include <utypes.h>
-#include <align.h>
+#include "align.h"
 #include <standard.h>
 #include <strdefs.h>
 #include <schily.h>

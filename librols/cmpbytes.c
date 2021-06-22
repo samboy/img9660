@@ -1,3 +1,4 @@
+/* This file has been modified by Sam Trenholme */
 /*
  * This file has been modified for the cdrkit suite.
  *
@@ -32,7 +33,7 @@
  */
 
 #include <standard.h>
-#include <align.h>
+#include "align.h"
 #include <schily.h>
 
 #define	DO8(a)	a; a; a; a; a; a; a; a;
