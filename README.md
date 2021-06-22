@@ -25,7 +25,8 @@ older version of the codebase with the name `genisoimage`.
 
 This older version is the most common version of the code.  The original
 long-term maintainer of `mkisofs` has an updated version (with the CDDL
-license issue) here:
+license issue) at http://schilytools.sourceforge.net/
 
-	http://schilytools.sourceforge.net/
+# Note
 
+This file was created by Sam Trenholme

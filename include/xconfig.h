@@ -1,3 +1,5 @@
+/* Note: This cmake artifact added to Git by Sam Trenholme */
+
 /* xconfig.h.in Prototype for xconfig.h, generated automatically by cmake in
  * cdrkit's build system.
  *

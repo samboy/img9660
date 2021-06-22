@@ -1,3 +1,5 @@
+# Note: This file was created by Sam Trenholme
+
 all: apple.o apple_driver.o boot-alpha.o boot-hppa.o boot-mips.o \
   boot-mipsel.o boot.o checksum.o desktop.o dvd_file.o \
   dvd_reader.o eltorito.o endian.o exclude.o files.o fnmatch.o \
