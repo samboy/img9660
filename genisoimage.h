@@ -37,6 +37,8 @@
 
 /* APPLE_HYB James Pearson j.pearson@ge.ucl.ac.uk 23/2/2000 */
 
+#ifndef GENISOIMAGE
+#define GENISOIMAGE
 #define APPID_DEFAULT "GENISOIMAGE ISO 9660/HFS FILESYSTEM CREATOR (C) 1993 E.YOUNGDALE (C) 1997-2006 J.PEARSON/J.SCHILLING (C) 2006-2007 CDRKIT TEAM"
 
 
@@ -801,3 +803,4 @@ extern void	*e_malloc(size_t);
  * EB: various shared stuff
  */
 extern char		*merge_warn_msg;
+#endif // GENISOIMAGE

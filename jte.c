@@ -1043,6 +1043,7 @@ void write_jt_match_record(char *filename, char *mirror_name, int sector_size, o
     }        
 }
 #else // JINGO
+#include <schily.h>
 void jtwrite(void *buffer, int size, int count, int submode, BOOL islast) {
 	return;
 }
