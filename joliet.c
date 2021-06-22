@@ -1,3 +1,4 @@
+/* This file has been modified by Sam Trenholme */
 /*
  * This file has been modified for the cdrkit suite.
  *
@@ -133,7 +134,7 @@ static void
 #endif
 convert_to_unicode(unsigned char *buffer, int size, char *source, 
 						 struct unls_table *inls);
-static int	joliet_strlen(const char *string, struct nls_table *inls);
+/*int	joliet_strlen(const char *string, struct nls_table *inls);*/
 #endif
 static void	get_joliet_vol_desc(struct iso_primary_descriptor *jvol_desc);
 static void	assign_joliet_directory_addresses(struct directory *node);
@@ -364,11 +365,10 @@ convert_to_unicode(unsigned char *buffer, int size, char *source,
  *		codes is available that we can easily adapt.
  */
 #ifdef	UDF
-int
+int joliet_strlen(const char *string, struct unls_table *inls)
 #else
-static int
+int joliet_strlen(const char *string, struct nls_table *inls)
 #endif
-joliet_strlen(const char *string, struct unls_table *inls)
 {
 	int		rtn;
 
