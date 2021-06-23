@@ -11,11 +11,14 @@ all: apple.o apple_driver.o boot-alpha.o boot-hppa.o boot-mips.o \
 librols/movebytes.o:
 	cd librols/ ; make ; cd ..
 
+librols/stdio/dat.o:
+	cd librols/stdio ; make ; cd ../..
+
 libunls/nls_base.o:
 	cd libunls ; make ; cd ..
 
 clean:
-	rm -f *.o librols/*.o libunls/*.o
+	rm -f *.o librols/*.o libunls/*.o librols/stdio/*.o
 
 apple.o: apple.c
 	${CC} ${FLAGS} -c -I include/ -o apple.o apple.c
@@ -134,5 +137,7 @@ volume.o: volume.c
 write.o: write.c
 	${CC} ${FLAGS} -c -I include/ -o write.o write.c
 
-genisoimage: librols/movebytes.o libunls/nls_base.o genisoimage.c 
-	${CC} ${FLAGS} -I include/ -o 9660img genisoimage.c *.o librols/*.o libunls/*.o
+genisoimage: librols/movebytes.o libunls/nls_base.o librols/stdio/dat.o \
+  genisoimage.c 
+	${CC} ${FLAGS} -I include/ -o 9660img genisoimage.c *.o \
+	librols/*.o libunls/*.o librols/stdio/*.o
