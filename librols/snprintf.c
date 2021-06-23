@@ -29,6 +29,7 @@
  * Foundation, 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA.
  */
 
+#ifdef NO_SNPRINTF
 #define	snprintf __nothing__	/* prototype may be wrong (e.g. IRIX) */
 #include <mconfig.h>
 #include <unixstd.h>		/* include <sys/types.h> try to get size_t */
@@ -100,3 +101,4 @@ snprintf(buf, maxcnt, form, va_alist)
 
 	return (cnt);
 }
+#endif // NO_SNPRINTF
