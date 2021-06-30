@@ -1205,7 +1205,7 @@ iso9660_date(char *result, time_t crtime)
 	zone = 0;
 
 	/* We will never be more than one day off between GMT and local 
-         * time.  That in mind, if they year is different, we are one day
+         * time.  That in mind, if the year is different, we are one day
          * behind or ahead.  Otherwise, if the day is different, it will
          * always be a one day difference. */
 	if(gmt->tm_year < year) {
