@@ -41,11 +41,11 @@
 #include "mac_label.h"
 #include <schily.h>
 
-int	get_732(char *p);
+int	apple_get_732(char *p);
 int	get_722(char *p);
 
 int
-get_732(char *p)
+apple_get_732(char *p)
 {
 	return ((p[3] & 0xff)
 		| ((p[2] & 0xff) << 8)
@@ -109,10 +109,10 @@ main(argc, argv)
 		if (fread(block, 1, HFS_BLOCKSZ, fp) != HFS_BLOCKSZ)
 			comerr("Can't read '%s'.", argv[1]);
 
-		pmMapBlkCnt = get_732((char *)mac_part->pmMapBlkCnt);
+		pmMapBlkCnt = apple_get_732((char *)mac_part->pmMapBlkCnt);
 
 		if (!have_boot && strncmp((char *)mac_part->pmPartType, pmPartType_2, 12) == 0) {
-			hfs_start = get_732((char *)mac_part->pmPyPartStart);
+			hfs_start = apple_get_732((char *)mac_part->pmPyPartStart);
 
 			fprintf(stderr, "%s: found 512 driver partition (at block %d)\n", argv[0], hfs_start);
 			memcpy(pmBlock512, block, HFS_BLOCKSZ);
@@ -121,7 +121,7 @@ main(argc, argv)
 
 		if (!have_hfs && strncmp((char *)mac_part->pmPartType, pmPartType_4, 9) == 0) {
 
-			hfs_start = get_732((char *)mac_part->pmPyPartStart);
+			hfs_start = apple_get_732((char *)mac_part->pmPyPartStart);
 
 			if (fseek(fp, hfs_start*HFS_BLOCKSZ, SEEK_SET) != 0)
 				comerr("Can't seek '%s'.", argv[1]);
@@ -149,15 +149,15 @@ main(argc, argv)
 		if (fread(block, 1, HFS_BLOCKSZ, fp) != HFS_BLOCKSZ)
 			comerr("Can't read '%s'.", argv[1]);
 
-		pmMapBlkCnt = get_732((char *)mac_part->pmMapBlkCnt);
+		pmMapBlkCnt = apple_get_732((char *)mac_part->pmMapBlkCnt);
 
 		if (strncmp((char *)mac_part->pmPartType, pmPartType_2, 12) == 0) {
 
 			int	start, num;
 
 			fprintf(stderr, "%s: extracting %s ", argv[0], mac_part->pmPartType);
-			start = get_732((char *)mac_part->pmPyPartStart);
-			num = get_732((char *)mac_part->pmPartBlkCnt);
+			start = apple_get_732((char *)mac_part->pmPyPartStart);
+			num = apple_get_732((char *)mac_part->pmPartBlkCnt);
 			fwrite(Block0, 1, HFS_BLOCKSZ, stdout);
 			fwrite(block, 1, HFS_BLOCKSZ, stdout);
 			fwrite(pmBlock512, 1, HFS_BLOCKSZ, stdout);

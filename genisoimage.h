@@ -494,7 +494,7 @@ extern unsigned long long rsync64(unsigned char *mem, size_t size);
 
 /* write.c */
 extern int get_731(char *);
-extern int get_732(char *);
+/*extern int get_732(char *);*/
 extern int get_733(char *);
 extern int isonum_733(unsigned char *);
 extern void set_723(char *, unsigned int);
