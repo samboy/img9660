@@ -56,6 +56,7 @@
 #include "exclude.h"
 #include <unls.h>	/* For UNICODE translation */
 #include <schily.h>
+#include <stdint.h> /* Sam Trenholme uses for Y2028 timestamps */
 #ifdef UDF
 #include "udf.h"
 #endif
@@ -1151,34 +1152,79 @@ int
 iso9660_date(char *result, time_t crtime)
 {
 	struct tm	*local;
+	struct tm	*gmt;
+	int32_t year, yday, hour, minute, second, zone;
 
 	local = localtime(&crtime);
-	result[0] = local->tm_year;
+	result[0] = year = local->tm_year;
 	result[1] = local->tm_mon + 1;
 	result[2] = local->tm_mday;
-	result[3] = local->tm_hour;
-	result[4] = local->tm_min;
-	result[5] = local->tm_sec;
+	yday = local->tm_yday;
+	result[3] = hour = local->tm_hour;
+	result[4] = minute = local->tm_min;
+	result[5] = second = local->tm_sec;
 
-	/*
-	 * Must recalculate proper timezone offset each time, as some files use
-	 * daylight savings time and some don't...
-	 */
-	result[6] = local->tm_yday;	/* save yday 'cause gmtime zaps it */
-	local = gmtime(&crtime);
-	local->tm_year -= result[0];
-	local->tm_yday -= result[6];
-	local->tm_hour -= result[3];
-	local->tm_min -= result[4];
-	if (local->tm_year < 0) {
-		local->tm_yday = -1;
-	} else {
-		if (local->tm_year > 0)
-			local->tm_yday = 1;
+	/* Sam Trenholme's notes: The following code has been updated to be
+         * Y2028 compliant.  That is *not* a typo: Year twenty-*twenty*eight
+         * (**not 2038!**).
+         * In other words, result[6] (the time zone) had invalid values for
+         * files created on or after January 1, 2028.
+         */
+
+	/* First of all, the 9660 spec only allows timestamps between
+         * January 1, 1900 and December 31, 2155.  So, handle timestamps
+         * outside that spec by giving out timestamps at the end of the
+         * spec.  It is unknown here in 2021 whether or not 2155 will
+  	 * have a leap second; I will assume programmers are smart enough
+         * to not have things crash if we have a leap second. */
+        if(year < 0) {
+		/* January 1, 1900 00:00:00 GMT */
+		result[0] = 0;
+		result[1] = 1;
+		result[2] = 1;
+		result[3] = 0;
+		result[4] = 0;
+		result[5] = 0;
+		result[6] = 0; /* Time zone */
+		return 0;
+	} else if(year > 255) {
+		/* December 31, 2155, 23:59:60 GMT */
+		result[0] = 255;
+		result[1] = 12;
+		result[2] = 31;
+		result[3] = 23;
+		result[4] = 59;
+		result[5] = 60;
+		result[6] = 0; /* Time zone */
+		return 0;
 	}
 
-	result[6] = -(local->tm_min + 60 *
-			(local->tm_hour + 24 * local->tm_yday)) / 15;
+	/* I have no idea why POSIX does not have tm_gmtoff.  Since it
+	 * doesn't, we have to calculate it ourselves. */
+	gmt = gmtime(&crtime); /* Zaps local, be careful */
+
+	zone = 0;
+
+	/* We will never be more than one day off between GMT and local 
+         * time.  That in mind, if they year is different, we are one day
+         * behind or ahead.  Otherwise, if the day is different, it will
+         * always be a one day difference. */
+	if(gmt->tm_year < year) {
+		zone = 86400; /* 24 hours in seconds */
+	} else if(gmt->tm_year > year) {
+		zone = -86400;
+	} else if(gmt->tm_yday < yday) {
+		zone = 86400;
+	} else if(gmt->tm_yday > yday) {
+		zone = -86400;
+	}
+
+	/* Now that we account for different days, account for different
+         * hours, minutes, and seconds. */
+	zone += (hour - gmt->tm_hour) * 3600;
+	zone += (minute - gmt->tm_min) * 60;
+	zone += second - gmt->tm_sec;
+	result[6] = zone / 900; /* Every 15 minutes in 9660 spec */
 
 	return (0);
 }
