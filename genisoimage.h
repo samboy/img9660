@@ -379,7 +379,7 @@ extern int	use_fileversion;
 extern int	split_SL_component;
 extern int	split_SL_field;
 extern char	*trans_tbl;
-char		*outfile;
+/*char		*outfile;*/
 
 #define	JMAX		64	/* maximum Joliet file name length (spec) */
 #define	JLONGMAX	103	/* out of spec Joliet file name length */
