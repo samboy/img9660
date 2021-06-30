@@ -56,7 +56,6 @@
 #include "exclude.h"
 #include <unls.h>	/* For UNICODE translation */
 #include <schily.h>
-#include <stdint.h> /* Sam Trenholme uses for Y2028 timestamps */
 #ifdef UDF
 #include "udf.h"
 #endif
@@ -1153,7 +1152,7 @@ iso9660_date(char *result, time_t crtime)
 {
 	struct tm	*local;
 	struct tm	*gmt;
-	int32_t year, yday, hour, minute, second, zone;
+	int year, yday, hour, minute, second, zone;
 
 	local = localtime(&crtime);
 	result[0] = year = local->tm_year;
