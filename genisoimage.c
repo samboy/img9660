@@ -1386,7 +1386,8 @@ int main(int argc, char *argv[])
 	}
 
 	while ((c = getopt_long_only(argc, argv, shortopts,
-						longopts, &longind)) != EOF)
+						longopts, &longind)) != EOF) {
+		printf("optarg is %s\n",optarg);//DEBUG
 		switch (c) {
 		case 1:
 			/* A filename that we take as input. */
@@ -2091,8 +2092,6 @@ int main(int argc, char *argv[])
 			volume_id = (char *)malloc(35);
 			int counter;
 			for(counter = 0; counter < 34; counter++) {
-				printf("Counter is %d\n",counter);//DEBUG
-				printf("optarg is %s\n",optarg);//DEBUG
 				*(volume_id + counter) = *(optarg + counter);
 				if(*(optarg + counter) == 0) {
 					break;
@@ -2513,6 +2512,7 @@ int main(int argc, char *argv[])
 		default:
 			susage(1);
 		}
+	}
 	/*
 	 * "--" was found, the next argument is a pathspec
 	 */

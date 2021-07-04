@@ -139,6 +139,6 @@ write.o: write.c
 
 genisoimage: librols/movebytes.o libunls/nls_base.o librols/stdio/dat.o \
   genisoimage.c 
-	${CC} ${FLAGS} -DHAVE_GETOPT_H -I include/ -o 9660img \
+	${CC} ${FLAGS} -I include/ -o 9660img \
 	genisoimage.c *.o \
 	librols/*.o libunls/*.o librols/stdio/*.o
