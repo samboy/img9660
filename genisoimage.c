@@ -2088,8 +2088,18 @@ int main(int argc, char *argv[])
 			warn_violate++;
 			break;
 		case 'V':
-			volume_id = optarg;
-			if (strlen(volume_id) > 32) {
+			volume_id = (char *)malloc(35);
+			int counter;
+			for(counter = 0; counter < 34; counter++) {
+				printf("Counter is %d\n",counter);//DEBUG
+				printf("optarg is %s\n",optarg);//DEBUG
+				*(volume_id + counter) = *(optarg + counter);
+				if(*(optarg + counter) == 0) {
+					break;
+				}
+			}
+			/* volume_id = optarg; */
+			if (counter >= 32) {
 #ifdef	USE_LIBSCHILY
 				comerrno(EX_BAD,
 					"Volume ID string too long\n");
