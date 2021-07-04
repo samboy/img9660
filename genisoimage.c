@@ -64,13 +64,13 @@
 #include <io.h>					/* for setmode() prototype */
 #endif
 
-#ifdef HAVE_GETOPT_H
+/*#ifdef HAVE_GETOPT_H
 #include <getopt.h>
-#else
+#else*/
 #include "getopt.h"
 extern int      optind;
 extern char     *optarg;
-#endif
+/*#endif*/
 
 #ifdef VMS
 #include "vms.h"
@@ -1387,7 +1387,6 @@ int main(int argc, char *argv[])
 
 	while ((c = getopt_long_only(argc, argv, shortopts,
 						longopts, &longind)) != EOF) {
-		printf("optarg is %s\n",optarg);//DEBUG
 		switch (c) {
 		case 1:
 			/* A filename that we take as input. */
