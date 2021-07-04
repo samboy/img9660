@@ -6,7 +6,7 @@ all: apple.o apple_driver.o boot-alpha.o boot-hppa.o boot-mips.o \
   getopt.o getopt1.o hash.o ifo_read.o joliet.o jte.o \
   match.o md5.o multi.o name.o rock.o rsync.o \
   scsi.o sha1.o sha256.o sha512.o stream.o tree.o udf.o vms.o \
-  volume.o write.o genisoimage
+  volume.o write.o iso9660
 
 librols/movebytes.o:
 	cd librols/ ; make ; cd ..
@@ -137,8 +137,8 @@ volume.o: volume.c
 write.o: write.c
 	${CC} ${FLAGS} -c -I include/ -o write.o write.c
 
-genisoimage: librols/movebytes.o libunls/nls_base.o librols/stdio/dat.o \
+iso9660: librols/movebytes.o libunls/nls_base.o librols/stdio/dat.o \
   genisoimage.c 
-	${CC} ${FLAGS} -I include/ -o 9660img \
+	${CC} ${FLAGS} -I include/ -o iso9660 \
 	genisoimage.c *.o \
 	librols/*.o libunls/*.o librols/stdio/*.o
