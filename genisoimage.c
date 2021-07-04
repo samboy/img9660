@@ -3564,12 +3564,14 @@ if (check_session == 0)
 	/* Now assign addresses on the disc for the path table. */
 
 	path_blocks = ISO_BLOCKS(path_table_size);
-	if (path_blocks & 1)
-		path_blocks++;
+	/* See https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=505381 
+	 * for why this is commented out */
+	/*if (path_blocks & 1)
+		path_blocks++;*/
 
 	jpath_blocks = ISO_BLOCKS(jpath_table_size);
-	if (jpath_blocks & 1)
-		jpath_blocks++;
+	/*if (jpath_blocks & 1)
+		jpath_blocks++;*/
 
 	/*
 	 * Start to set up the linked list that we use to track the contents
