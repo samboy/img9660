@@ -2097,7 +2097,11 @@ int main(int argc, char *argv[])
 				}
 			}
 			/* volume_id = optarg; */
-			if (counter >= 32) {
+			if (counter > 16) {
+				printf(
+"WARNING: Volume IDs over 16 chars not compatible with Joliet volumes");
+			}
+			if (counter > 32) {
 #ifdef	USE_LIBSCHILY
 				comerrno(EX_BAD,
 					"Volume ID string too long\n");
