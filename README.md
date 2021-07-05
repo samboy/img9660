@@ -6,6 +6,8 @@ the following:
 * It compiles without `cmake`
 * It generates Y2028 (not a typo: I mean 28 with a two) 
   compliant `.iso` image files
+* It fixes a [long standing bug](https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=505381) 
+  where four sectors (8 Kib) are wasted in image files.
 
 In more detail, there is a bug in `mkisofs` and `getisoimage` where it
 will, starting in 2028, make files with incorrect timestamps (the time
@@ -25,9 +27,10 @@ Upstream for `genisoimage`:
 * https://packages.debian.org/search?keywords=genisoimage
 * https://bugs.debian.org/cgi-bin/pkgreport.cgi?package=genisoimage
 
-Bug filed:
+Relevant bugs:
 
 * https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=990468
+* https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=505381
 
 Upstream for `mkisofs`:
 
