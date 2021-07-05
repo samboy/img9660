@@ -16,11 +16,7 @@ This fork fixes the issue.
 # Compiling and running
 
 The code compiles and runs without issue in Ubuntu 20.04.  Simply
-type in `make`.
-
-There is an issue getting an access violation when I compile the code
-with Cygwin.  The workaround is probably to use Windows Subsystem for 
-Linux to compile this package in Windows (not tried yet).
+enter the `src` directory and type in `make`.
 
 # Bug report filed upstream
 
