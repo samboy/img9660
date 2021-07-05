@@ -18,7 +18,7 @@ libunls/nls_base.o:
 	cd libunls ; make ; cd ..
 
 clean:
-	rm -f *.o librols/*.o libunls/*.o librols/stdio/*.o
+	rm -f *.o librols/*.o libunls/*.o librols/stdio/*.o iso9660 *.exe
 
 apple.o: apple.c
 	${CC} ${FLAGS} -c -I include/ -o apple.o apple.c
