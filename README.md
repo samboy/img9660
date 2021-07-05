@@ -15,8 +15,8 @@ This fork fixes the issue.
 
 # Compiling and running
 
-The code compiles and runs without issue in Ubuntu 20.04.  Simply
-enter the `src` directory and type in `make`.
+The code compiles and runs without issue in Ubuntu 20.04 and Cygwin.  
+Simply enter the `src` directory and type in `make`.
 
 # Bug report filed upstream
 
