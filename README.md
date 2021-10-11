@@ -1,3 +1,15 @@
+# Jorg Schilling, RIP
+
+It is with great sadness that [I need to report that Schilling has 
+passed away](https://minnie.tuhs.org/pipermail/tuhs/2021-October/024523.html).
+I dedicate this repo this his memory.
+
+I had a positive interaction with him in his final three to four
+months. I recently was in contact with Mr. Schilling to report a bug in
+CDR tools. Even though he was (looking back) dying, he was very prompt
+in replying to me and discussing the bug with me over email. Prayers
+for his family.
+
 # What this is
 
 This is a fork of `mkisofs`/`genisoimage` which I have made which has
