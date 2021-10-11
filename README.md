@@ -6,7 +6,7 @@ I dedicate this repo this his memory.
 
 I had a positive interaction with him in his final three to four
 months. I was in contact with Mr. Schilling to report a bug (fixed
-in this report) with CDR tools. Even though he was (looking back) dying,
+in this repo) with CDR tools. Even though he was (looking back) dying,
 he was very prompt in replying to me and discussing the bug with me over
 email. Prayers for his family.
 
