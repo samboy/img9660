@@ -48,8 +48,10 @@ Upstream for `mkisofs`:
 
 * http://schilytools.sourceforge.net/
 
-I have sent an email to the current `mkisofs` maintainer with the bug
-report and my fix.
+I sent an email to the `mkisofs` maintainer with the bug report and
+my fix.  While the late Joerg Schilling was very professional in his
+communication with me, he was unable to integrate my fix before he
+passed away.
 
 # The CDDL license controversey
 
@@ -63,8 +65,10 @@ Because of this, the Debian code based forked `mkisofs` and uses an
 older version of the codebase with the name `genisoimage`.  
 
 This older version is the most common version of the code.  The original
-long-term maintainer of `mkisofs` has an updated version (with the CDDL
-license issue) at http://schilytools.sourceforge.net/
+long-term maintainer of `mkisofs`, the late Joerg Schilling, made an updated 
+version (with the CDDL license issue) at http://schilytools.sourceforge.net/
+
+This repo is a fork of `genisoimage` and uses no CDDL licensed code.
 
 # Note
 
