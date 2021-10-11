@@ -20,8 +20,9 @@ the following:
   compliant `.iso` image files
 * It fixes a [long standing bug](https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=505381) 
   where four sectors (8 Kib) are wasted in image files.
+* This fork is based on the pure-GPL `genisoimage` version of the code.
 
-In more detail, there is a bug in `mkisofs` and `getisoimage` where it
+In more detail, there is a bug in `mkisofs` and `genisoimage` where it
 will, starting in 2028, make files with incorrect timestamps (the time
 zone will be invalid and incorrect).
 
