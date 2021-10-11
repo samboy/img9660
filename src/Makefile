@@ -6,7 +6,7 @@ all: apple.o apple_driver.o boot-alpha.o boot-hppa.o boot-mips.o \
   getopt.o getopt1.o hash.o ifo_read.o joliet.o jte.o \
   match.o md5.o multi.o name.o rock.o rsync.o \
   scsi.o sha1.o sha256.o sha512.o stream.o tree.o udf.o vms.o \
-  volume.o write.o iso9660
+  volume.o write.o img9660
 
 librols/movebytes.o:
 	cd librols/ ; make ; cd ..
@@ -18,7 +18,7 @@ libunls/nls_base.o:
 	cd libunls ; make ; cd ..
 
 clean:
-	rm -f *.o librols/*.o libunls/*.o librols/stdio/*.o iso9660 *.exe
+	rm -f *.o librols/*.o libunls/*.o librols/stdio/*.o img9660 *.exe
 
 apple.o: apple.c
 	${CC} ${FLAGS} -c -I include/ -o apple.o apple.c
@@ -137,8 +137,8 @@ volume.o: volume.c
 write.o: write.c
 	${CC} ${FLAGS} -c -I include/ -o write.o write.c
 
-iso9660: librols/movebytes.o libunls/nls_base.o librols/stdio/dat.o \
+img9660: librols/movebytes.o libunls/nls_base.o librols/stdio/dat.o \
   genisoimage.c 
-	${CC} ${FLAGS} -I include/ -o iso9660 \
+	${CC} ${FLAGS} -I include/ -o img9660 \
 	genisoimage.c *.o \
 	librols/*.o libunls/*.o librols/stdio/*.o

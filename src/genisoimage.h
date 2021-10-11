@@ -39,7 +39,8 @@
 
 #ifndef GENISOIMAGE
 #define GENISOIMAGE
-#define APPID_DEFAULT "MADE WITH ISO9660 HTTPS://GITHUB.COM/SAMBOY/ISO9660"
+/* This can be up to 127 bytes long */
+#define APPID_DEFAULT "MADE WITH IMG9660 HTTPS://GITHUB.COM/SAMBOY/IMG9660 RIP JOERG SCHILLING"
 
 #include <mconfig.h>	/* Must be before stdio.h for LARGEFILE support */
 #include <stdio.h>
