@@ -2,7 +2,7 @@
 
 It is with great sadness that [I need to report that Schilling has 
 passed away](https://minnie.tuhs.org/pipermail/tuhs/2021-October/024523.html).
-I dedicate this repo this his memory.
+I dedicate this repo to his memory.
 
 I had a positive interaction with him in his final three to four
 months. I was in contact with Mr. Schilling to report a bug (fixed
