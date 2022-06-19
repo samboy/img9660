@@ -12,7 +12,7 @@ email. Prayers for his family.
 
 # What this is
 
-This is a fork of `mkisofs`/`genisoimage` which I have made which has
+This is a fork of `genisoimage` which I have made which has
 the following:
 
 * It compiles without `cmake`
@@ -22,11 +22,14 @@ the following:
   where four sectors (8 Kib) are wasted in image files.
 * This fork is based on the pure-GPL `genisoimage` version of the code.
 
-In more detail, there is a bug in `mkisofs` and `genisoimage` where it
+In more detail, there is a bug in `genisoimage` where it
 will, starting in 2028, make files with incorrect timestamps (the time
 zone will be invalid and incorrect).
 
-This fork fixes the issue.
+While `mkisofs` used to have this bug, Schilling fixed the bug while 
+he was still with us.
+
+This fork fixes the issue in the pure GPL branch of `genisoimage`.
 
 # Compiling and running
 
@@ -45,14 +48,10 @@ Relevant bugs:
 * https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=990468
 * https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=505381
 
-Upstream for `mkisofs`:
+Upstream for `mkisofs` (again, Schilling made his own fix):
 
 * http://schilytools.sourceforge.net/
-
-I sent an email to the `mkisofs` maintainer with the bug report and
-my fix.  While the late Joerg Schilling was very professional in his
-communication with me, he was unable to integrate my fix before he
-passed away.
+* https://codeberg.org/schilytools/schilytools/
 
 # The CDDL license controversey
 
