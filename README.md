@@ -18,8 +18,12 @@ the following:
 * It compiles without `cmake`
 * It generates Y2028 (not a typo: I mean 28 with a two) 
   compliant `.iso` image files
-* It fixes a [long standing bug](https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=505381) 
-  where four sectors (8 Kib) are wasted in image files.
+* It fixes a [long standing bug](https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=505381)
+  where four sectors (8 Kib) are wasted in image files.  Note that the
+  Schilling version of the code still has this bug; since we do not
+  know *why* those extra four sectors were added, I will keep the code
+  because there is *probably* some obscure CD-ROM driver out there which
+  needs those sectors to be blank.
 * This fork is based on the pure-GPL `genisoimage` version of the code.
 
 In more detail, there is a bug in `genisoimage` where it
