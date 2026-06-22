@@ -26,6 +26,13 @@ the following:
   CD-ROM driver out there which needs those sectors to be blank.
 * This fork is based on the pure-GPL `genisoimage` version of the code.
 
+*Important* Joilet filesystems can *not* handle filenames with
+Unicode in them.  *All* filenames must be ASCII filenames.  Fixing
+this issue is left as an exercise for the reader.
+
+Also: This compiles as of 2026 in Cygwin.  Your mileage may vary; this is
+old crusty C code which needed a lot of hacking to compile again in 2026.
+
 In more detail, there is a bug in `genisoimage` where it
 will, starting in 2028, make files with incorrect timestamps (the time
 zone will be invalid and incorrect).
