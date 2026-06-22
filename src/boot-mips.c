@@ -56,6 +56,17 @@
  */
 
 #include <inttypes.h>
+#include <mconfig.h>
+#include "genisoimage.h"
+#include <fctldefs.h>
+#include <utypes.h>
+#include <intcvt.h>
+#include "match.h"
+#include "diskmbr.h"
+#include "bootinfo.h"
+#include <schily.h>
+#include "endianconv.h"
+#include "jte.h"
 #ifndef MIN
 #define MIN(a,b) ( (a<b) ? a : b )
 #endif

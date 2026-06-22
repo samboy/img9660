@@ -1042,7 +1042,7 @@ int	goof = 0;
 static void
 susage(int excode)
 {
-	const char	*program_name = "genisoimage";
+	const char	*program_name = "img9660";
 
 	fprintf(stderr, "Usage: %s [options] -o file directory ...\n", program_name);
 	fprintf(stderr, "\nUse %s -help\n", program_name);

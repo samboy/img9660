@@ -44,6 +44,7 @@
 #include "bootinfo.h"
 #include <schily.h>
 #include "endianconv.h"
+#include "jte.h"
 
         int     add_boot_alpha_filename(char *filename);
 static  int     boot_alpha_write(FILE *outfile);

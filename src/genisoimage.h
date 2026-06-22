@@ -541,16 +541,9 @@ extern int merge_previous_session(struct directory *,
 extern int get_session_start(int *);
 
 /* joliet.c */
-#ifdef	UDF
-#   ifdef USE_ICONV
 extern	size_t	convert_to_unicode	(unsigned char *buffer,
 			int size, char *source, struct unls_table *inls);
-#   else
-extern	void	convert_to_unicode	(unsigned char *buffer,
-			int size, char *source, struct unls_table *inls);
-#   endif
 extern	int	joliet_strlen	(const char *string, struct unls_table *inls);
-#endif
 extern unsigned char conv_charset(unsigned char, struct unls_table *,
 											 struct unls_table *);
 extern int joliet_sort_tree(struct directory * node);

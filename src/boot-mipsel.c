@@ -67,6 +67,8 @@
 #include "endianconv.h"
 #include <errno.h>
 #include <glibc_elf.h>
+#include "jte.h"
+
 
 int             add_boot_mipsel_filename(char *filename);
 static  int     boot_mipsel_write(FILE *outfile);

@@ -29,6 +29,7 @@
 #include <string.h>
 #include <sys/types.h>
 
+
 #include "sha256.h"
 
 #if __BYTE_ORDER == __LITTLE_ENDIAN

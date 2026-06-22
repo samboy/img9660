@@ -47,6 +47,7 @@
  */
 
 #include <stdio.h>
+#include <stdlib.h>
 #ifdef APPLE_HYB
 
 #include <mconfig.h>

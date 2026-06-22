@@ -39,6 +39,13 @@
 #include <intcvt.h>
 #include <schily.h>
 #include "sunlabel.h"
+#include <mconfig.h>
+#include "match.h"
+#include "diskmbr.h"
+#include "bootinfo.h"
+#include "endianconv.h"
+#include "jte.h"
+
 
 extern	int	use_sunx86boot;
 

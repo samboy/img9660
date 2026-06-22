@@ -99,6 +99,8 @@
 #include <unls.h>	/* For UNICODE translation */
 #include <schily.h>
 #include <string.h>
+#include "endianconv.h"
+#include "jte.h"
 
 #ifdef USE_ICONV
 #include <iconv.h>
@@ -117,25 +119,6 @@ static	char	ucs_codes[] = {
 		'E',		/* UCS-level 3			*/
 };
 
-#ifdef	UDF
-#ifdef USE_ICONV
-size_t
-#else
-void
-#endif
-convert_to_unicode(unsigned char *buffer, int size, char *source, 
-						 struct unls_table *inls);
-int	joliet_strlen(const char *string, struct unls_table *inls);
-#else
-#ifdef USE_ICONV
-static size_t
-#else
-static void
-#endif
-convert_to_unicode(unsigned char *buffer, int size, char *source, 
-						 struct unls_table *inls);
-/*int	joliet_strlen(const char *string, struct nls_table *inls);*/
-#endif
 static void	get_joliet_vol_desc(struct iso_primary_descriptor *jvol_desc);
 static void	assign_joliet_directory_addresses(struct directory *node);
 static void	build_jpathlist(struct directory *node);
@@ -214,20 +197,7 @@ conv_charset(unsigned char c,
  *
  * Notes:
  */
-#ifdef USE_ICONV
-#	if	UDF
-size_t
-#	else
-static size_t
-#	endif
-#else
-#	if	UDF
-void
-#	else
-static void
-#	endif
-#endif
-convert_to_unicode(unsigned char *buffer, int size, char *source, 
+size_t convert_to_unicode(unsigned char *buffer, int size, char *source, 
 						 struct unls_table *inls)
 {
 	unsigned char	*tmpbuf;
@@ -364,11 +334,7 @@ convert_to_unicode(unsigned char *buffer, int size, char *source,
  * 		intelligent Unicode conversion for either Multibyte or 8-bit
  *		codes is available that we can easily adapt.
  */
-#ifdef	UDF
 int joliet_strlen(const char *string, struct unls_table *inls)
-#else
-int joliet_strlen(const char *string, struct nls_table *inls)
-#endif
 {
 	int		rtn;
 

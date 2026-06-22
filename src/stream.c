@@ -36,6 +36,9 @@
 #include <mconfig.h>
 #include "genisoimage.h"
 #include "iso9660.h"
+#include "endianconv.h"
+#include "jte.h"
+
 
 static int	size_str_file(int starting_extent);
 static int	size_str_dir(int starting_extent);
