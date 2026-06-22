@@ -28,10 +28,13 @@ the following:
 
 *Important* Joilet filesystems can *not* handle filenames with
 Unicode in them.  *All* filenames must be ASCII filenames.  Fixing
-this issue is left as an exercise for the reader.
+this issue is left as an exercise for the reader.  If these are issues,
+I strongly suggest using the currently maintained `xorriso` instead.
 
 Also: This compiles as of 2026 in Cygwin.  Your mileage may vary; this is
-old crusty C code which needed a lot of hacking to compile again in 2026.
+old crusty C code which needed a lot of hacking to compile again in 2026
+(it compiled fine in 2022, but then both `clang` and `gcc` changed what
+they allowed to compile.  Ugh.).
 
 In more detail, there is a bug in `genisoimage` where it
 will, starting in 2028, make files with incorrect timestamps (the time
